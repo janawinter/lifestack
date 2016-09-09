@@ -1,0 +1,52 @@
+{
+  "name": "stupid-questions",
+  "version": "0.1.0",
+  "description": "No question too stupid.",
+  "main": "index.js",
+  "scripts": {
+    "knex": "knex",
+    "start": "node-inspector --web-port=8888 & nodemon --debug server.js",
+    "test": "tape 'tests/**/*.test.js' -r babel-register | tap-spec",
+    "heroku-postbuild": "npm run knex migrate:latest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nikau-2016/stupid-questions.git"
+  },
+  "keywords": [
+    "stupid",
+    "questions"
+  ],
+  "author": "Nikau 2016",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/nikau-2016/stupid-questions/issues"
+  },
+  "homepage": "https://github.com/nikau-2016/stupid-questions#readme",
+  "devDependencies": {
+    "babel-preset-es2015": "^6.14.0",
+    "babel-preset-react": "^6.11.1",
+    "eslint": "^3.4.0",
+    "eslint-config-standard": "^6.0.0",
+    "eslint-plugin-promise": "^2.0.1",
+    "eslint-plugin-react": "^6.2.0",
+    "eslint-plugin-standard": "^2.0.0",
+    "node-inspector": "^0.12.8",
+    "nodemon": "^1.10.2",
+    "sqlite3": "^3.1.4"
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "react"
+    ]
+  },
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "jsonwebtoken": "^7.1.9",
+    "cors": "^2.8.0",
+    "express": "^4.14.0",
+    "knex": "^0.11.10",
+    "pg": "^6.1.0"
+  }
+}

@@ -26,6 +26,7 @@ Please refer to Kamon for any questions about this process.
 
 (Ensure that you have adhered to the git process prior to making each pull request)
 
+# Making A Pull Request
 1.Ensure that you've opened a pull request to the 'DEVELOPMENT' branch from your feature branch.
 
 2. Use the '#<n>' format to reference the ticket that the pull request is meant to complete.
@@ -33,6 +34,16 @@ Please refer to Kamon for any questions about this process.
 3. Make detailed comments explaining the purpose of the pull request.
 
 4. Alert another team member that a pull request has been made and is awaiting review.
+
+# Reviewing A Pull Request
+1. Ensure that the changes proposed in the pull request meet the requirements of the associated ticket.
+
+2. Ensure that the request is being made to the development branch.
+
+3. !IMPORTANT! Leave a comment detailing any further changes that need to be made for the pull request.
+
+4. Accept and close the Pull Request once the proposed changes meet all requirements of  the associated tickets and any comments.
+
 
 !IMPORTANT!
   Do not merge the pull request yourself!

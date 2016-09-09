@@ -6,7 +6,7 @@ exports.seed = function(knex, Promise) {
       return Promise.all([
         // Inserts seed entries
         knex('skills').insert({id: 101, skillName: 'Change Lightbulb', category: 'Domestic'}),
-        knex('skills').insert({id: 102, skillName: 'How to Write a cheque', category: 'Budget'}),
+        knex('skills').insert({id: 102, skillName: 'How to Write a Cheque', category: 'Budget'}),
         knex('skills').insert({id: 103, skillName: 'How to Grow Herbs', category: 'Outside'})
       ])
     })

@@ -3,7 +3,7 @@ const router = express.Router()
 
 const db = require('../../lib/database')
 
-module.exports = Router
+module.exports = router
 
 router.get('/top3', (req, res) => {
   res.send([

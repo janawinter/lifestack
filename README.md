@@ -44,6 +44,8 @@ Please refer to Kamon for any questions about this process.
 
 4. Accept and close the Pull Request once the proposed changes meet all requirements of  the associated tickets and any comments.
 
+5. Please move the associated ticket into the done column of the waffle board upon merging the pull request.
+
 
 !IMPORTANT!
   Do not merge the pull request yourself!

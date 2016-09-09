@@ -4,12 +4,6 @@ exports.seed = function(knex, Promise) {
   return knex('videos').del()
     .then(function () {
       return Promise.all([
-        // Inserts seed entries
-        // knex('videos').insert({id: 201, skill_id: 101 , url: 'https://www.youtube.com/watch?v=jpIX1_qQni8', votes: 150, type: "tutorial"}),
-        // knex('videos').insert({id: 202, skill_id: 102 , url: 'https://www.youtube.com/watch?v=KBtkup2PWAU', votes: 50, type: "tutorial"}),
-        // knex('videos').insert({id: 203, skill_id: 103 , url: 'https://www.youtube.com/watch?v=aaqzPMOd_1g', votes: 5, type: "tutorial"}),
-        // knex('videos').insert({id: 204, skill_id: 102 , url: 'https://www.youtube.com/watch?v=KBtkup2PWAU', votes: 50, type: "showcase"}),
-        // knex('videos').insert({id: 205, skill_id: 101 , url: 'https://www.youtube.com/watch?v=jpIX1_qQni8', votes: 5, type: "showcase"}),
         knex('videos').insert({id: 206, skill_id: 104 , url: 'https://www.youtube.com/embed/s9r-CxnCXkg', votes: 50, type: "tutorial"}),
         knex('videos').insert({id: 207, skill_id: 104 , url: 'https://www.youtube.com/embed/PUP7U5vTMM0', votes: 200, type: "tutorial"}),
         knex('videos').insert({id: 208, skill_id: 104 , url: 'https://www.youtube.com/embed/Vuy2nrJz0Zw', votes: 150, type: "tutorial"}),
@@ -56,7 +50,7 @@ exports.seed = function(knex, Promise) {
 
         knex('videos').insert({id: 2039, skill_id: 1015, url: 'https://www.youtube.com/embed/FpHK_uDQLH4', votes: 100, type: "tutorial"}),
         knex('videos').insert({id: 2040, skill_id: 1015, url: 'https://www.youtube.com/embed/GH_JLA-fkBY', votes: 77, type: "tutorial"}),
-        knex('videos').insert({id: 2041, skill_id: 1015, url: 'https://www.youtube.com/embed/5mjzftwnmjc', votes: 59, type: "tutorial"}),
+        knex('videos').insert({id: 2041, skill_id: 1015, url: 'https://www.youtube.com/embed/5mjzftwnmjc', votes: 59, type: "tutorial"})
 
 
 

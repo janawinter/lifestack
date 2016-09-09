@@ -4,10 +4,7 @@ exports.seed = function(knex, Promise) {
   return knex('skills').del()
     .then(function () {
       return Promise.all([
-        // Inserts seed entries
-        // knex('skills').insert({id: 101, skillName: 'Change Lightbulb', category: 'Domestic'}),
-        // knex('skills').insert({id: 102, skillName: 'How to Write a Cheque', category: 'Budget'}),
-        // knex('skills').insert({id: 103, skillName: 'How to Grow Herbs', category: 'Outside'}),
+
         knex('skills').insert({id: 104, skillName: 'How to Cook Scrambled Eggs', category: 'Cooking'}),
         knex('skills').insert({id: 105, skillName: 'How to Fry Eggs', category: 'Cooking'}),
         knex('skills').insert({id: 106, skillName: 'How to Poach Eggs Perfectly', category: 'Cooking'}),
@@ -25,7 +22,7 @@ exports.seed = function(knex, Promise) {
         knex('skills').insert({id: 1015, skillName: 'How to Save Money', category: 'Budget'})
 
 
-      ])Auto
+      ])
     })
 
 }

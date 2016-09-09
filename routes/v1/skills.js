@@ -34,3 +34,11 @@ router.get('/:id', (req, res) => {
     })
     .catch(() => res.sendStatus(500))
 })
+
+router.get('/', (req, res) => {
+  db.getSkills()
+    .then((data) => {
+      res.json({data: data})
+    })
+    .catch(() => res.sendStatus(500))
+})

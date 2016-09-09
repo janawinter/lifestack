@@ -1,9 +1,11 @@
 const express = require('express')
-const Router = express.Router()
+const router = express.Router()
 
-module.exports = Router
+const db = require('../../lib/database')
 
-Router.get('/', (req, res) => {
+module.exports = router
+
+router.get('/top3', (req, res) => {
   res.send([
     {
       id: 1237,
@@ -21,4 +23,14 @@ Router.get('/', (req, res) => {
       skillName: "How to Grow Herbs"
     },
   ])
+})
+
+
+router.get('/:id', (req, res) => {
+  const id = req.params.id
+  db.getSkillsById(id)
+    .then((data) => {
+      res.json({data: data})
+    })
+    .catch(() => res.sendStatus(500))
 })

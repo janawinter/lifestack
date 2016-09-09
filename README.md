@@ -80,3 +80,36 @@ Please refer to Kamon for any questions about this process.
  div className="search-Page"
 
 Adhering to these conventions will help alleviate confusion amongst the team
+
+##Server Routes 
+
+
+##Heroku Server##
+
+The server is currently running on the domain ```Enter URL here```
+
+##Routes - Skills
+
+###GET : /v1/skills.js ###
+
+Sends back all questions currently in the database in JSON 
+
+Response body:
+
+```
+{
+      id: 1237,
+      link: "https://www.youtube.com/watch?v=jpIX1_qQni8",
+      skillName: "Change Lightbulb"
+    },
+    {
+      id: 1238,
+      link: "https://www.youtube.com/watch?v=KBtkup2PWAU",
+      skillName: "How to Write a cheque"
+    },
+    {
+      id: 1239,
+      link: "https://www.youtube.com/watch?v=aaqzPMOd_1g",
+      skillName: "How to Grow Herbs"
+    },
+```

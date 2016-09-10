@@ -4,19 +4,24 @@ module.exports = function (token, tokenSecret, profile, done) {
   process.nextTick(function() {
     db.getUserById(profile.id)
       .then((user) => {
-        if (user) {
+        if (user[0]) {
+          console.log("User exists")
           return done(null, user)
         } else {
-          db.addUser(profile.id, profile.displayName, profile.photos[0])
+          console.log("User does not exist")
+          db.addUser(profile.id, profile.username, profile.photos[0])
             .then((user) => {
+              console.log("User has been created")
               return done(null, user)
             })
             .catch((err) => {
+              console.log("Error adding user in DB")
               return done(err, null)
             })
         }
       })
       .catch((err) => {
+        console.log("Error finding user in DB")
         return done(err, null)
       })
   })

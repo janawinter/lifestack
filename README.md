@@ -81,7 +81,7 @@ Please refer to Kamon for any questions about this process.
 
 Adhering to these conventions will help alleviate confusion amongst the team
 
-##Server Routes 
+##Server Routes
 
 
 ##Heroku Server##
@@ -90,9 +90,9 @@ The server is currently running on the domain ```Enter URL here```
 
 ##Routes - Skills
 
-###GET : /v1/skills.js ###
+###GET : /v1/skills ###
 
-Sends back all questions currently in the database in JSON 
+Sends back all tutorials currently in the database in JSON
 
 Response body:
 
@@ -112,4 +112,130 @@ Response body:
       link: "https://www.youtube.com/watch?v=aaqzPMOd_1g",
       skillName: "How to Grow Herbs"
     },
+```
+
+###GET : /v1/skills/:id ###
+
+Sends back all tutorials currently in the database in JSON
+
+Response body: (for ex: skill id 104)
+
+```
+{
+      data: {
+        videos: [
+            {
+              id: 207,
+              url: "https://www.youtube.com/embed/PUP7U5vTMM0",
+              votes: 200,
+              type: "tutorial"
+            },
+            {
+              id: 206,
+              url: "https://www.youtube.com/embed/s9r-CxnCXkg",
+              votes: 50,
+              type: "tutorial"
+            },
+            {
+              id: 208,
+              url: "https://www.youtube.com/embed/Vuy2nrJz0Zw",
+              votes: 150,
+              type: "tutorial"
+            }
+          ],
+        id: 104,
+        skillName: "How to Cook Scrambled Eggs",
+        category: "Cooking"
+    }
+}
+```
+
+###GET : /v1/users/:id ###
+
+Sends back data currently attached to the user in the database in JSON
+
+Response body: (for ex: user id 197)
+
+```
+{
+        data: {
+          skillList: [
+              {
+                id: 104,
+                skillName: "How to Cook Scrambled Eggs",
+                category: "Cooking",
+                status: "attempted",
+                skillXp: 50,
+                showcase: "https://www.youtube.com/embed/s9r-CxnCXkg"
+              },
+              {
+                id: 105,
+                skillName: "How to Fry Eggs",
+                category: "Cooking",
+                status: "attempted",
+                skillXp: 50,
+                showcase: "https://www.youtube.com/embed/J5_HmfZyhKo"
+              },
+              {
+                id: 106,
+                skillName: "How to Poach Eggs Perfectly",
+                category: "Cooking",
+                status: "watched",
+                skillXp: 25,
+                showcase: null
+              },
+              {
+                id: 107,
+                skillName: "How to Change A Car Tyre",
+                category: "Auto",
+                status: "watched",
+                skillXp: 25,
+                showcase: null
+              },
+              {
+                id: 108,
+                skillName: "How To Jumpstart Your Car",
+                category: "Auto",
+                status: "watched",
+                skillXp: 25,
+                showcase: null
+              }
+            ],
+          id: 197,
+          username: "user 3",
+          profile_pic: "http://www.aspirehire.co.uk/aspirehire-co-uk/_img/profile.svg",
+          level: 1,
+          totalXp: 175,
+          remainingXp: 25
+        }
+}
+```
+
+###GET : /v1/skills/top3###
+
+Sends back data currently attached to the user in the database in JSON
+
+Response body:
+
+```
+{
+        data: [
+          {
+                skillName: "How to Poach Eggs Perfectly",
+                url: "https://www.youtube.com/embed/pAWduxoCgVk",
+                votes: 303
+              },
+              {
+                skillName: "How to Wash Clothes",
+                url: "https://www.youtube.com/embed/BfnIleOEmZM",
+                votes: 240
+              },
+              {
+                skillName: "How to Cook Scrambled Eggs",
+                url: "https://www.youtube.com/embed/PUP7U5vTMM0",
+                votes: 200
+            }
+          ]
+}
+
 ```

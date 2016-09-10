@@ -34,9 +34,15 @@ router.get('/', (req, res) => {
 router.put('/:id/showcase', (req, res) => {
   const id = req.params.id
   const showcase = req.body.showcase
-  db.getSkillsById(id)
+  const skill_id = req.body.skill_id
+
+
+  db.uploadShowcase(id, skill_id, showcase)
     .then((data) => {
-      data.insert({showcase: showcase})
+    db.addShowcaseVideo(skill_id, showcase)
+      .then((data) => {
+        res.sendStatus(201)
     })
-    .catch(() => res.sendStatus(500))
+  })
+  .catch(() => res.sendStatus(500))
 })

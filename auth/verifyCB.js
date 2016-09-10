@@ -1,6 +1,6 @@
 const db = require('../lib/database')
 
-module.export = function (token, tokenSecret, profile, done) {
+module.exports = function (token, tokenSecret, profile, done) {
   process.nextTick(function() {
     db.getUserById(profile.id)
       .then((user) => {

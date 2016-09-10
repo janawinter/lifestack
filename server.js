@@ -51,8 +51,7 @@ passport.use(new TwitterStrategy({
 app.get('/auth/twitter', passport.authenticate('twitter'))
 
 app.get('/login/twitter/callback',
-  passport.authenticate('twitter', function(req, res) {
-    res.redirect('/v1/users/' + req.user.id)
-  }))
+  passport.authenticate('twitter', { successRedirect: 'http://localhost:5000',
+                                     failureRedirect: 'http://localhost:5000/v1/users' }))
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`))

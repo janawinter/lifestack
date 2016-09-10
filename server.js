@@ -53,7 +53,6 @@ app.get('/auth/twitter', passport.authenticate('twitter'))
 app.get('/login/twitter/callback',
   passport.authenticate('twitter', { failureRedirect: 'http://localhost:5000' }),
   function(req, res) {
-    console.log(req.user[0].id)
     res.redirect('http://localhost:5000' + '/#/profile/' + req.user[0].id)
   })
 

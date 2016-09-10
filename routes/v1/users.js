@@ -7,8 +7,7 @@ module.exports = router
 
 
 router.get("/:id", (req, res) => {
-  //let id = req.params.id
-  let id = 197
+  let id = req.params.id
   db.getUserDetails(id)
   .then((data) => {
       res.json({data: data})

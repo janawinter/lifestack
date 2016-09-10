@@ -30,3 +30,13 @@ router.get('/', (req, res) => {
     })
     .catch(() => res.sendStatus(500))
 })
+
+router.put('/:id/showcase', (req, res) => {
+  const id = req.params.id
+  const showcase = req.body.showcase
+  db.getSkillsById(id)
+    .then((data) => {
+      data.insert({showcase: showcase})
+    })
+    .catch(() => res.sendStatus(500))
+})

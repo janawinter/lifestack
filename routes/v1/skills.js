@@ -31,21 +31,20 @@ router.get('/', (req, res) => {
     .catch(() => res.sendStatus(500))
 })
 
-router.put('/:id/vote', (req, res) => {
+router.put('/:id/upvote', (req, res) => {
   const id = req.params.id
-  const vote = req.body.vote
-
-  if (vote > 0) {
-    db.upVote (id)
-      .then((data) => {
-        res.sendStatus(202)
-      })
-      .catch(() => res.sendStatus(500))
-  } else {
-    db.downVote (id)
+  db.upVote (id)
     .then((data) => {
       res.sendStatus(202)
     })
     .catch(() => res.sendStatus(500))
-  }
+})
+
+router.put('/:id/downvote', (req, res) => {
+  const id = req.params.id
+  db.downVote (id)
+    .then((data) => {
+      res.sendStatus(202)
+    })
+    .catch(() => res.sendStatus(500))
 })

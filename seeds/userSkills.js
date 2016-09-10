@@ -18,8 +18,6 @@ exports.seed = function(knex, Promise) {
         knex('userSkills').insert({id: 1087, user_id: 198, skill_id: 1014, showcaseURL: 'https://www.youtube.com/embed/s9r-CxnCXkg'}),
         knex('userSkills').insert({id: 1086, user_id: 199, skill_id: 1015, showcaseURL: 'https://www.youtube.com/embed/s9r-CxnCXkg'})
 
-
-
       ])
     })
 }

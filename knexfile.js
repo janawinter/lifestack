@@ -14,7 +14,7 @@ module.exports = {
       max: 10
     },
     migrations: {
-      tableName: 'stupidquestions_migrations'
+      tableName: 'knex_migrations'
     }
   },
 

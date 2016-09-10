@@ -1,7 +1,7 @@
 {
   "name": "lifestack",
   "version": "0.1.0",
-  "description": "No question too stupid.",
+  "description": "Server for #Adulting",
   "main": "index.js",
   "scripts": {
     "knex": "knex",
@@ -14,8 +14,9 @@
     "url": "git+https://github.com/nikau-2016/lifestack.git"
   },
   "keywords": [
-    "stupid",
-    "questions"
+    "hashtag",
+    "adulting",
+    "#"
   ],
   "author": "Nikau 2016",
   "license": "MIT",

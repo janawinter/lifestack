@@ -9,17 +9,17 @@ router.get('/top3', (req, res) => {
   res.send([
     {
       id: 1237,
-      link: "https://www.youtube.com/watch?v=jpIX1_qQni8",
+      link: "https://www.youtube.com/embed/s9r-CxnCXkg",
       skillName: "Change Lightbulb"
     },
     {
       id: 1238,
-      link: "https://www.youtube.com/watch?v=KBtkup2PWAU",
+      link: "https://www.youtube.com/embed/s9r-CxnCXkg",
       skillName: "How to Write a cheque"
     },
     {
       id: 1239,
-      link: "https://www.youtube.com/watch?v=aaqzPMOd_1g",
+      link: "https://www.youtube.com/embed/s9r-CxnCXkg",
       skillName: "How to Grow Herbs"
     },
   ])

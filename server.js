@@ -12,6 +12,7 @@ var TwitterStrategy = require('passport-twitter').Strategy
 var configAuth = require('./auth/twitterConfig')
 var verifyCB = require('./auth/verifyCB')
 
+
 const app = express()
 
 const skills = require('./routes/v1/skills')
@@ -55,5 +56,6 @@ app.get('/login/twitter/callback',
   function(req, res) {
     res.redirect('http://localhost:5000' + '/#/profile/' + req.user[0].id)
   })
+
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`))

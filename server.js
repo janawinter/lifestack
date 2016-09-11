@@ -2,10 +2,15 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const path = require('path')
 const cors = require('cors')
+const session = require('express-session')
 const PORT = process.env.PORT || 3000
 
-//Remove when done with mock login route
 const db = require('./lib/database')
+
+var passport = require('passport')
+var TwitterStrategy = require('passport-twitter').Strategy
+var configAuth = require('./auth/twitterConfig')
+var verifyCB = require('./auth/verifyCB')
 
 
 const app = express()
@@ -16,19 +21,41 @@ const users = require('./routes/v1/users')
 app.use(express.static('public'))
 app.use(bodyParser.json())
 app.use(cors())
+app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUninitialized: true }))
 
 app.use('/v1/skills', skills)
 app.use('/v1/users', users)
 
-//Remove when done with mock login route
-app.use('/login', (req, res) => {
-  console.log(req.body.username, req.body.password)
-    let id = 199
-    db.getUserDetails(id)
-      .then((data) => {
-        res.json({data: data})
-      })
-      .catch(() => res.sendStatus(500))
+passport.serializeUser(function(user, done) {
+  done(null, user)
 })
+
+passport.deserializeUser(function(id, done) {
+  db.getUserById(id)
+    .then((user) => {
+      done(null, user)
+    })
+    .catch((err) => {
+      done(err, null)
+    })
+})
+
+app.use(passport.initialize())
+app.use(passport.session())
+
+passport.use(new TwitterStrategy({
+    consumerKey: configAuth.apikey,
+    consumerSecret: configAuth.apisecret,
+    callbackURL: configAuth.callbackUrl
+  }, verifyCB))
+
+app.get('/auth/twitter', passport.authenticate('twitter'))
+
+app.get('/login/twitter/callback',
+  passport.authenticate('twitter', { failureRedirect: 'http://localhost:5000' }),
+  function(req, res) {
+    res.redirect('http://localhost:5000' + '/#/profile/' + req.user[0].id)
+  })
+
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`))

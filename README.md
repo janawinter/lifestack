@@ -239,3 +239,49 @@ Response body:
 }
 
 ```
+
+###PUT : /:id/showcase###
+
+You need to send the data as JSON (application/JSON)
+
+```
+{
+  "skill_id": 106,
+  "showcase": "https://www.youtube.com/embed/s9r-CxnCXkg"
+}
+
+```
+
+Response body:
+
+```
+
+Status(202) - Accepted
+Status(500) - Internal Server Error
+
+```
+
+###PUT : /:id/status###
+
+You need to send the data as JSON (application/JSON)
+
+
+```
+{
+  "skill_id": 104,
+  "status": "watched"
+}
+```
+Response Body:
+
+```
+{
+  "data": {
+    "id": 3,
+    "skill_id": 108,
+    "user_id": 199,
+    "status": "watched",
+    "showcaseURL": null
+  }
+}
+```

@@ -13,7 +13,6 @@ router.get('/top3', (req, res) => {
     .catch(() => res.sendStatus(500))
 })
 
-
 router.get('/:id', (req, res) => {
   const id = req.params.id
   db.getSkillsById(id)

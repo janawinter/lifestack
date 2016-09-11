@@ -35,10 +35,27 @@ router.put("/:id/status", (req, res) => {
   const skill_id = req.body.skill_id
   const user_id = req.params.id
 
-  db.statusUpdate (user_id, skill_id, status)
-    .then((data) => {
-      console.log
-      res.sendStatus(202)
+
+  db.checkIfUserHasSkill(user_id, skill_id)
+    .then(user => {
+      if (user[0]) {
+        db.statusUpdate (user_id, skill_id, status)
+          .then((data) => {
+            res.json({data: data[0]}).status(202)
+          })
+          .catch((err) => {
+            console.log("Error updating user in DB")
+            res.sendStatus(500)
+          })
+      } else {
+        db.addSkillToUser (user_id, skill_id, status)
+          .then((data) => {
+            res.json({data: data[0]}).status(201)
+          })
+          .catch((err) => {
+            console.log("Error adding user in DB")
+            res.sendStatus(500)
+          })
+        }
     })
-    .catch(() => res.sendStatus(500))
 })

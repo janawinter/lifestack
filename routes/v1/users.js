@@ -37,6 +37,7 @@ router.put("/:id/status", (req, res) => {
 
   db.statusUpdate (user_id, skill_id, status)
     .then((data) => {
+      console.log
       res.sendStatus(202)
     })
     .catch(() => res.sendStatus(500))

@@ -9,7 +9,7 @@ module.exports = function (token, tokenSecret, profile, done) {
           return done(null, user)
         } else {
           console.log("User does not exist")
-          db.addUser(profile.id, profile.username, profile.photos[0])
+          db.addUser(profile.id, profile.username, profile.photos[0].value)
             .then((user) => {
               console.log("User has been created")
               return done(null, user)

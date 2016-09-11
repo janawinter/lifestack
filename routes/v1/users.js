@@ -35,6 +35,7 @@ router.put("/:id/status", (req, res) => {
   const skill_id = req.body.skill_id
   const user_id = req.params.id
 
+
   db.checkIfUserHasSkill(user_id, skill_id)
     .then(user => {
       if (user[0]) {

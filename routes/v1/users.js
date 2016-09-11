@@ -24,7 +24,7 @@ router.put('/:id/showcase', (req, res) => {
     .then((data) => {
     db.addShowcaseVideo(skill_id, showcase)
       .then((data) => {
-        res.sendStatus(202)
+        return getUserDetails(id)
     })
   })
   .catch(() => res.sendStatus(500))

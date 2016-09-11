@@ -57,5 +57,10 @@ app.get('/login/twitter/callback',
     res.redirect('http://localhost:5000' + '/#/profile/' + req.user[0].id)
   })
 
+  app.get('/logout', (req, res) => {
+    console.log('logout')
+    req.session.destroy()
+    res.sendStatus(200)
+  })
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`))

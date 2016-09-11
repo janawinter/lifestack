@@ -61,6 +61,7 @@ router.put("/:id/status", (req, res) => {
 })
 
 router.get('/logout', (req, res) => {
-  req.logout()
-  res.redirect('http://localhost:5000/')
+  console.log('logout')
+  //req.logout()
+  // res.redirect('http://localhost:5000/')
 })

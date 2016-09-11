@@ -30,10 +30,10 @@ passport.serializeUser(function(user, done) {
   done(null, user)
 })
 
-passport.deserializeUser(function(id, done) {
-  db.getUserById(id)
+passport.deserializeUser(function(obj, done) {
+  db.getUserById(obj[0].twitter_id)
     .then((user) => {
-      done(null, user)
+      done(null, user[0])
     })
     .catch((err) => {
       done(err, null)

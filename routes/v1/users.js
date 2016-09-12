@@ -15,16 +15,16 @@ router.get("/:id", (req, res) => {
     .catch(() => res.sendStatus(500))
 })
 
-router.put('/:id/showcase', (req, res) => {
+router.put('/:id/tutorial', (req, res) => {
   const id = req.params.id
-  const showcase = req.body.showcase
+  const tutorial = req.body.tutorial
   const skill_id = req.body.skill_id
 
-  url = showcase.replace(/watch\?v=/i, "embed/")
+  url = tutorial.replace(/watch\?v=/i, "embed/")
 
-  db.uploadShowcase(id, skill_id, url)
+  db.uploadTutorial(id, skill_id, url)
     .then(() => {
-    db.addShowcaseVideo(skill_id, url)
+    db.addTutorialVideo(skill_id, url)
       .then(() => {
         db.getUserDetails(id)
           .then((data) => {

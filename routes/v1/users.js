@@ -20,14 +20,17 @@ router.put('/:id/tutorial', (req, res) => {
   const tutorial = req.body.tutorial
   const skill_id = req.body.skill_id
 
-  db.uploadTutorial(id, skill_id, tutorial)
-    .then((data) => {
-      console.log("hitting the route", data)
-    db.addTutorialVideo(skill_id, tutorial)
-      .then((data) => {
-        console.log("hitting the route", data)
-        return db.getUserDetails(id)
-    })
+  db.uploadTutorial(id, skill_id, showcase)
+    .then(() => {
+    db.addTutorialVideo(skill_id, showcase)
+      .then(() => {
+        db.getUserDetails(id)
+          .then((data) => {
+            res.json({data: data}).status(201)
+          })
+          .catch(() => res.sendStatus(500))
+      })
+      .catch(() => res.sendStatus(500))
   })
   .catch(() => res.sendStatus(500))
 })
@@ -63,7 +66,8 @@ router.put("/:id/status", (req, res) => {
 })
 
 router.get('/:id/random', (req, res) => {
-  db.random()
+  const id = req.params.id
+  db.random(id)
     .then((data) => {
       res.json({data: data})
     })

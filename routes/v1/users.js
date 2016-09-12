@@ -59,3 +59,14 @@ router.put("/:id/status", (req, res) => {
         }
     })
 })
+
+router.get('/:id/random', (req, res) => {
+  db.random()
+    .then((data) => {
+      res.json({data: data})
+    })
+    .catch((err) => {
+      console.log(err)
+      res.sendStatus(500)
+    })
+})

@@ -61,7 +61,8 @@ router.put("/:id/status", (req, res) => {
 })
 
 router.get('/:id/random', (req, res) => {
-  db.random()
+  const id = req.params.id
+  db.random(id)
     .then((data) => {
       res.json({data: data})
     })

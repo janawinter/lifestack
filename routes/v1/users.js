@@ -21,11 +21,16 @@ router.put('/:id/showcase', (req, res) => {
   const skill_id = req.body.skill_id
 
   db.uploadShowcase(id, skill_id, showcase)
-    .then((data) => {
+    .then(() => {
     db.addShowcaseVideo(skill_id, showcase)
-      .then((data) => {
-        return db.getUserDetails(id)
-    })
+      .then(() => {
+        db.getUserDetails(id)
+          .then((data) => {
+            res.json({data: data}).status(201)
+          })
+          .catch(() => res.sendStatus(500))
+      })
+      .catch(() => res.sendStatus(500))
   })
   .catch(() => res.sendStatus(500))
 })

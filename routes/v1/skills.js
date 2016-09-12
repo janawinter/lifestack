@@ -13,17 +13,28 @@ router.get('/top3', (req, res) => {
     .catch(() => res.sendStatus(500))
 })
 
-router.get('/:id', (req, res) => {
-  const id = req.params.id
-  db.getSkillsById(id)
+router.get('/random', (req, res) => {
+  db.random()
+    .then((data) => {
+      res.json({data: data})
+    })
+    .catch((err) => {
+      console.log(err)
+      res.sendStatus(500)
+    })
+})
+
+router.get('/', (req, res) => {
+  db.getSkills()
     .then((data) => {
       res.json({data: data})
     })
     .catch(() => res.sendStatus(500))
 })
 
-router.get('/', (req, res) => {
-  db.getSkills()
+router.get('/:id', (req, res) => {
+  const id = req.params.id
+  db.getSkillsById(id)
     .then((data) => {
       res.json({data: data})
     })

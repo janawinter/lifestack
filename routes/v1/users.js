@@ -20,9 +20,11 @@ router.put('/:id/showcase', (req, res) => {
   const showcase = req.body.showcase
   const skill_id = req.body.skill_id
 
-  db.uploadShowcase(id, skill_id, showcase)
+  url = showcase.replace(/watch\?v=/i, "embed/")
+
+  db.uploadShowcase(id, skill_id, url)
     .then(() => {
-    db.addShowcaseVideo(skill_id, showcase)
+    db.addShowcaseVideo(skill_id, url)
       .then(() => {
         db.getUserDetails(id)
           .then((data) => {

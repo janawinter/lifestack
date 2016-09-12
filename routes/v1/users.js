@@ -20,7 +20,7 @@ router.put('/:id/tutorial', (req, res) => {
   const tutorial = req.body.tutorial
   const skill_id = req.body.skill_id
 
-  url = tutorial.replace(/watch\?v=/i, "embed/")
+  const url = "https://www.youtube.com/embed/" + getId(tutorial)
 
   db.uploadTutorial(id, skill_id, url)
     .then(() => {
@@ -78,3 +78,14 @@ router.get('/:id/random', (req, res) => {
       res.sendStatus(500)
     })
 })
+
+function getId(url) {
+    var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/
+    var match = url.match(regExp)
+
+    if (match && match[2].length == 11) {
+        return match[2]
+    } else {
+        return 'error'
+    }
+}

@@ -15,15 +15,17 @@ router.get("/:id", (req, res) => {
     .catch(() => res.sendStatus(500))
 })
 
-router.put('/:id/showcase', (req, res) => {
+router.put('/:id/tutorial', (req, res) => {
   const id = req.params.id
-  const showcase = req.body.showcase
+  const tutorial = req.body.tutorial
   const skill_id = req.body.skill_id
 
-  db.uploadShowcase(id, skill_id, showcase)
+  db.uploadTutorial(id, skill_id, tutorial)
     .then((data) => {
-    db.addShowcaseVideo(skill_id, showcase)
+      console.log("hitting the route", data)
+    db.addTutorialVideo(skill_id, tutorial)
       .then((data) => {
+        console.log("hitting the route", data)
         return db.getUserDetails(id)
     })
   })

@@ -20,9 +20,9 @@ router.put('/:id/tutorial', (req, res) => {
   const tutorial = req.body.tutorial
   const skill_id = req.body.skill_id
 
-  db.uploadTutorial(id, skill_id, showcase)
+  db.uploadTutorial(id, skill_id, tutorial)
     .then(() => {
-    db.addTutorialVideo(skill_id, showcase)
+    db.addTutorialVideo(skill_id, tutorial)
       .then(() => {
         db.getUserDetails(id)
           .then((data) => {

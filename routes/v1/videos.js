@@ -5,12 +5,17 @@ const db = require('../../lib/database')
 
 module.exports = router
 
-router.delete('/:id/delete/:video_id', (req, res) => {
+router.delete('/:id', (req, res) => {
   const id = req.params.id
-  const video_id = req.params.video_id
-  db.deleteVideo (id, video_id)
+
+  db.deleteVideo (id)
     .then((data) => {
-      res.json({data: data})
+      if(data === 0) {
+        return res.sendStatus(404)
+      }
+      res.json({
+        message: "This has been deleted"
+      })
     })
     .catch(() => res.sendStatus(500))
 })

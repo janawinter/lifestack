@@ -4,7 +4,7 @@ exports.up = function(knex, Promise) {
     table.increments('id').primary()
     table.integer('user_id')
     table.integer('video_id')
-    table.string('comments')
+    table.string('comment')
     table.timestamps(false, true)
   })
 }

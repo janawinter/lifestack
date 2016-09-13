@@ -96,9 +96,9 @@ router.get('/:video_id/comments', (req, res) => {
 router.post('/:id/comments', (req, res) => {
   const user_id = req.params.id
   const video_id = req.body.video_id
-  const comments = req.body.comments
+  const comment = req.body.comment
 
-  db.addComments (user_id, video_id, comments)
+  db.addComments (user_id, video_id, comment)
     .then((data) => {
       res.json({data: data})
     })

@@ -5,9 +5,8 @@ exports.seed = function(knex, Promise) {
     .then(function () {
       return Promise.all([
         // Inserts seed entries
-        knex('users').insert({id: 199, username: 'user 1', profile_pic: 'http://www.aspirehire.co.uk/aspirehire-co-uk/_img/profile.svg'}),
-        knex('users').insert({id: 198, username: 'user 2', profile_pic: 'http://www.aspirehire.co.uk/aspirehire-co-uk/_img/profile.svg'}),
-        knex('users').insert({id: 197, username: 'user 3', profile_pic: 'http://www.aspirehire.co.uk/aspirehire-co-uk/_img/profile.svg'})
+        knex('users').insert({id: 199, username: 'Janawhat', twitter_id:'297120112', profile_pic: 'http://www.aspirehire.co.uk/aspirehire-co-uk/_img/profile.svg'}),
+        knex('users').insert({id: 198, username: 'phant35', twitter_id:'473383919', profile_pic: 'http://www.aspirehire.co.uk/aspirehire-co-uk/_img/profile.svg'})
       ])
     })
 }

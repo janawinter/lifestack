@@ -122,31 +122,68 @@ Response body: (for ex: skill id 104)
 
 ```
 {
-      data: {
-        videos: [
-            {
-              id: 207,
-              url: "https://www.youtube.com/embed/PUP7U5vTMM0",
-              votes: 200,
-              type: "tutorial"
-            },
-            {
-              id: 206,
-              url: "https://www.youtube.com/embed/s9r-CxnCXkg",
-              votes: 50,
-              type: "tutorial"
-            },
-            {
-              id: 208,
-              url: "https://www.youtube.com/embed/Vuy2nrJz0Zw",
-              votes: 150,
-              type: "tutorial"
-            }
-          ],
-        id: 104,
-        skillName: "How to Cook Scrambled Eggs",
-        category: "Cooking"
-    }
+  "data": {
+    "videos": [
+      {
+        "id": 207,
+        "url": "https://www.youtube.com/embed/PUP7U5vTMM0",
+        "votes": 200,
+        "type": "tutorial",
+        "user_details": [
+          {
+            "id": 198,
+            "skill_id": 104,
+            "user_id": 198,
+            "status": "contributed",
+            "showcaseURL": "https://www.youtube.com/embed/PUP7U5vTMM0",
+            "twitter_id": "473383919",
+            "username": "phant35",
+            "profile_pic": "http://www.aspirehire.co.uk/aspirehire-co-uk/_img/profile.svg"
+          }
+        ]
+      },
+      {
+        "id": 208,
+        "url": "https://www.youtube.com/embed/Vuy2nrJz0Zw",
+        "votes": 150,
+        "type": "tutorial",
+        "user_details": [
+          {
+            "id": 198,
+            "skill_id": 104,
+            "user_id": 198,
+            "status": "contributed",
+            "showcaseURL": "https://www.youtube.com/embed/Vuy2nrJz0Zw",
+            "twitter_id": "473383919",
+            "username": "phant35",
+            "profile_pic": "http://www.aspirehire.co.uk/aspirehire-co-uk/_img/profile.svg"
+          }
+        ]
+      },
+      {
+        "id": 206,
+        "url": "https://www.youtube.com/embed/s9r-CxnCXkg",
+        "votes": 50,
+        "type": "tutorial",
+        "user_details": [
+          {
+            "id": 198,
+            "skill_id": 104,
+            "user_id": 198,
+            "status": "contributed",
+            "showcaseURL": "https://www.youtube.com/embed/s9r-CxnCXkg",
+            "twitter_id": "473383919",
+            "username": "phant35",
+            "profile_pic": "http://www.aspirehire.co.uk/aspirehire-co-uk/_img/profile.svg"
+          }
+        ]
+      }
+    ],
+    "id": 104,
+    "skillName": "How to Cook Scrambled Eggs",
+    "category": "Cooking",
+    "difficulty": "easy"
+  }
 }
 ```
 

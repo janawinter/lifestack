@@ -44,7 +44,9 @@ router.get('/:id', (req, res) => {
 router.put('/:id/upvote/:video_id', (req, res) => {
   const id = req.params.id
   const video_id = req.params.video_id
-  db.upVote (id, video_id)
+  const user_id = req.body.user_id
+
+  db.upVote (id, video_id, user_id)
     .then((data) => {
       res.json({data: data})
     })
@@ -54,7 +56,9 @@ router.put('/:id/upvote/:video_id', (req, res) => {
 router.put('/:id/downvote/:video_id', (req, res) => {
   const id = req.params.id
   const video_id = req.params.video_id
-  db.downVote (id, video_id)
+  const user_id = req.body.user_id
+
+  db.downVote (id, video_id, user_id)
     .then((data) => {
       res.json({data: data})
     })

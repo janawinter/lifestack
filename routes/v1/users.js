@@ -22,17 +22,26 @@ router.put('/:id/tutorial', (req, res) => {
 
   const url = "https://www.youtube.com/embed/" + getId(tutorial)
 
-  db.uploadTutorial(id, skill_id, url)
-    .then(() => {
-    db.addTutorialVideo(skill_id, url)
-      .then(() => {
-        db.getUserDetails(id)
-          .then((data) => {
-            res.json({data: data}).status(201)
+  db.addTutorialVideo(skill_id, url)
+  .then((data) => {
+    if(data) {
+      db.uploadTutorial(id, skill_id, url)
+          .then(() => {
+            db.getUserDetails(id)
+              .then((data) => {
+                res.json({data: data}).status(201)
+              })
+              .catch(() => res.sendStatus(500))
           })
           .catch(() => res.sendStatus(500))
-      })
-      .catch(() => res.sendStatus(500))
+    } else {
+      db.getUserDetails(id)
+        .then((data) => {
+          data.message = "This video has already been uploaded!"
+          res.json({data: data}).status(201)
+        })
+        .catch(() => res.sendStatus(500))
+    }
   })
   .catch(() => res.sendStatus(500))
 })

@@ -79,6 +79,24 @@ router.get('/:id/random', (req, res) => {
     })
 })
 
+
+
+
+router.post('/:id/comments', (req, res) => {
+  const user_id = req.params.id
+  const video_id = req.body.video_id
+  const comments = req.body.comments
+
+  db.addComments (user_id, video_id, comments)
+    .then((data) => {
+      res.json({data: data})
+    })
+    .catch((err) => {
+      console.log(err)
+      res.sendStatus(500)
+    })
+})
+
 function getId (url) {
     const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/
     const match = url.match(regExp)

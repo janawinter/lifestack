@@ -79,7 +79,18 @@ router.get('/:id/random', (req, res) => {
     })
 })
 
+router.get('/:video_id/comments', (req, res) => {
+  const video_id = req.params.video_id
 
+  db.getVideoComments (video_id)
+    .then((data) => {
+      res.json({data: data})
+    })
+    .catch((err) => {
+      console.log(err)
+      res.sendStatus(500)
+    })
+})
 
 
 router.post('/:id/comments', (req, res) => {

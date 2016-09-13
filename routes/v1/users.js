@@ -127,3 +127,17 @@ function getId (url) {
         return 'error'
     }
 }
+
+router.delete('/:id/videos/:video_id', (req, res) => {
+  const id = req.params.id
+  const video_id = req.params.video_id
+
+  db.deleteVideo (video_id)
+    .then((data) => {
+      db.getUserDetails(id)
+      .then((result) => {
+        res.json({data: result})
+      })
+    })
+    .catch(() => res.sendStatus(500))
+})

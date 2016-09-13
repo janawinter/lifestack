@@ -17,7 +17,6 @@ const app = express()
 
 const skills = require('./routes/v1/skills')
 const users = require('./routes/v1/users')
-const videos = require('./routes/v1/videos')
 
 app.use(express.static('public'))
 app.use(bodyParser.json())
@@ -26,7 +25,6 @@ app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveU
 
 app.use('/v1/skills', skills)
 app.use('/v1/users', users)
-app.use('/v1/videos', videos)
 
 passport.serializeUser(function(user, done) {
   done(null, user)

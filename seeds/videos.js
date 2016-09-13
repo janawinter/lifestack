@@ -42,7 +42,7 @@ exports.seed = function(knex, Promise) {
 
         knex('videos').insert({id: 2033, skill_id: 1013, url: 'https://www.youtube.com/embed/XYmqVYlLO7U', votes: 40, type: "tutorial"}),
         knex('videos').insert({id: 2034, skill_id: 1013, url: 'https://www.youtube.com/embed/b7Virks8rlw', votes: 177, type: "tutorial"}),
-        knex('videos').insert({id: 2035, skill_id: 1013, url: 'https://www.youtube.com/embed/b7Virks8rlw', votes: 119, type: "tutorial"}),
+        knex('videos').insert({id: 2035, skill_id: 1013, url: 'https://www.youtube.com/embed/CgEu5EAvZYY', votes: 119, type: "tutorial"}),
 
         knex('videos').insert({id: 2036, skill_id: 1014, url: 'https://www.youtube.com/embed/Rs8P0Eh7Zbc', votes: 150, type: "tutorial"}),
         knex('videos').insert({id: 2037, skill_id: 1014, url: 'https://www.youtube.com/embed/pN709oX9Bzk', votes: 54, type: "tutorial"}),

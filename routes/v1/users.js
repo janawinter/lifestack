@@ -26,9 +26,8 @@ router.get("/:id", (req, res) => {
     .then((data) => {
       res.json({data: data})
     })
-    .catch(() => res.sendStatus(500))
+    .catch(() => res.status(500).json({error: "Sorry, this user does not exist"}))
 })
-
 
 router.put('/:id/tutorial',
   verifyJwt({
@@ -36,35 +35,36 @@ router.put('/:id/tutorial',
     secret: getSecret
   }),
   (req, res) => {
-    const id = req.params.id
-    const tutorial = req.body.tutorial
-    const skill_id = req.body.skill_id
+  const id = req.params.id
+  const tutorial = req.body.tutorial
+  const skill_id = req.body.skill_id
 
-    const url = "https://www.youtube.com/embed/" + getId(tutorial)
+  const url = "https://www.youtube.com/embed/" + getId(tutorial)
 
-    db.addTutorialVideo(skill_id, url)
-    .then((data) => {
-      if(data) {
-        db.uploadTutorial(id, skill_id, url)
-            .then(() => {
-              db.getUserDetails(id)
-                .then((data) => {
-                  res.json({data: data}).status(201)
-                })
-                .catch(() => res.sendStatus(500))
-            })
-            .catch(() => res.sendStatus(500))
-      } else {
-        db.getUserDetails(id)
-          .then((data) => {
-            data.message = "This video has already been uploaded!"
-            res.json({data: data}).status(201)
+  db.addTutorialVideo(skill_id, url)
+  .then((data) => {
+    if(data) {
+      db.uploadTutorial(id, skill_id, url)
+          .then(() => {
+            db.getUserDetails(id)
+              .then((data) => {
+                res.json({data: data}).status(201)
+              })
+              .catch(() => res.status(500).json({error: "Sorry, something went wrong!"}))
           })
-          .catch(() => res.sendStatus(500))
-      }
-    })
-    .catch(() => res.sendStatus(500))
+          .catch(() => res.status(500).json({error: "Sorry, something went wrong!"}))
+    } else {
+      db.getUserDetails(id)
+        .then((data) => {
+          data.message = "This video has already been uploaded!"
+          res.json({data: data[0]}).status(201)
+        })
+        .catch(() => res.status(500).json({error: "Sorry, something went wrong!"}))
+    }
+  })
+  .catch(() => res.status(500).json({error: "Sorry, something went wrong!"}))
 })
+
 
 
 router.put("/:id/status",
@@ -86,8 +86,7 @@ router.put("/:id/status",
               res.json({data: data[0]}).status(202)
             })
             .catch((err) => {
-              console.log("Error updating user in DB")
-              res.sendStatus(500)
+              res.status(500).json({error: "Sorry, something went wrong!"})
             })
         } else {
           db.addSkillToUser (user_id, skill_id, status)
@@ -110,8 +109,7 @@ router.get('/:id/random', (req, res) => {
       res.json({data: data})
     })
     .catch((err) => {
-      console.log(err)
-      res.sendStatus(500)
+      res.status(500).json({error: "Sorry, something went wrong!"})
     })
 })
 
@@ -124,7 +122,7 @@ router.get('/:video_id/comments', (req, res) => {
     })
     .catch((err) => {
       console.log(err)
-      res.sendStatus(500)
+      res.status(500).json({error: "Sorry, something went wrong!"})
     })
 })
 
@@ -145,9 +143,9 @@ router.post('/:id/comments',
       })
       .catch((err) => {
         console.log(err)
-        res.sendStatus(500)
+        res.status(500).json({error: "Sorry, something went wrong!"})
       })
-})
+  })
 
 function getId (url) {
     const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/
@@ -177,5 +175,5 @@ router.delete('/:id/videos/:video_id',
         res.json({data: result})
       })
     })
-    .catch(() => res.sendStatus(500))
+    .catch(() => res.status(500).json({error: "Sorry, something went wrong!"}))
 })

@@ -5,6 +5,7 @@ const cors = require('cors')
 const expressSession = require('express-session')
 const cookieParser = require('cookie-parser')
 const PORT = process.env.PORT || 3000
+const client_url = process.env.CLIENT || 'http://localhost:5000'
 
 const db = require('./lib/database')
 
@@ -63,7 +64,7 @@ app.get('/auth/twitter', session, passport.authenticate('twitter'))
 app.get('/login/twitter/callback', session, verifyCB.issueJwt,
 function(req, res) {
   console.log("reached")
-  res.redirect('http://localhost:5000' + '/#/profile/' + req.user[0].id)
+  res.redirect(client_url + `/#/profile/${user[0].id}`)
 })
 
 app.get('/logout', (req, res) => {

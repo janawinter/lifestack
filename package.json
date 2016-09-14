@@ -53,5 +53,8 @@
     "passport": "^0.3.2",
     "passport-twitter": "^1.0.4",
     "pg": "^6.1.0"
+  },
+  "engines": {
+    "node": "6.5.0"
   }
 }

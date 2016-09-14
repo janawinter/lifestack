@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/nikau-2016/lifestack.png?label=ready&title=Ready)](https://waffle.io/nikau-2016/lifestack)
 # Lifestack
 
 Final project - Nikau 2016

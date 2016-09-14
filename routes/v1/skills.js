@@ -10,7 +10,7 @@ router.get('/top3', (req, res) => {
     .then((data) => {
       res.json({data: data})
     })
-    .catch(() => res.sendStatus(500))
+    .catch(() => res.status(500).json({error: "Sorry, something went wrong!"}))
 })
 
 router.get('/random', (req, res) => {
@@ -19,8 +19,7 @@ router.get('/random', (req, res) => {
       res.json({data: data})
     })
     .catch((err) => {
-      console.log(err)
-      res.sendStatus(500)
+      res.status(500).json({error: "Sorry, something went wrong!"})
     })
 })
 
@@ -29,7 +28,7 @@ router.get('/', (req, res) => {
     .then((data) => {
       res.json({data: data})
     })
-    .catch(() => res.sendStatus(500))
+    .catch(() => res.status(500).json({error: "Sorry, something went wrong!"}))
 })
 
 router.get('/:id', (req, res) => {
@@ -38,7 +37,7 @@ router.get('/:id', (req, res) => {
     .then((data) => {
       res.json({data: data})
     })
-    .catch(() => res.sendStatus(500))
+    .catch(() => res.status(500).json({error: "Sorry, this skill does not exist...yet!"}))
 })
 
 router.put('/:id/upvote/:video_id', (req, res) => {
@@ -50,7 +49,7 @@ router.put('/:id/upvote/:video_id', (req, res) => {
     .then((data) => {
       res.json({data: data})
     })
-    .catch(() => res.sendStatus(500))
+    .catch(() => res.status(500).json({error: "Sorry, something went wrong!"}))
 })
 
 router.put('/:id/downvote/:video_id', (req, res) => {
@@ -62,5 +61,5 @@ router.put('/:id/downvote/:video_id', (req, res) => {
     .then((data) => {
       res.json({data: data})
     })
-    .catch(() => res.sendStatus(500))
+    .catch(() => res.status(500).json({error: "Sorry, something went wrong!"}))
 })

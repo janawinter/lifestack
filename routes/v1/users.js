@@ -1,52 +1,88 @@
 const express = require('express')
 const router = express.Router()
+const expressSession = require('express-session')
+const passport = require('passport')
+const verifyJwt = require('express-jwt')
+const verifyCB = require('../../auth/verifyCB')
 
 const db = require('../../lib/database')
 
 module.exports = router
 
+const session = expressSession({
+  resave: false,
+  secret: process.env.SESSIONS,
+  saveUninitialized: false
+})
+
+function getSecret (req, payload, done) {
+  done(null, req.app.get('JWT_SECRET'))
+}
+
+router.get('/info',
+  verifyJwt({
+    getToken: verifyCB.getTokenFromCookie,
+    secret: getSecret
+  }),
+  (req, res) => {
+    console.log(req.cookies)
+  }
+)
 
 router.get("/:id", (req, res) => {
   let id = req.params.id
   db.getUserDetails(id)
-  .then((data) => {
+    .then((data) => {
       res.json({data: data})
     })
     .catch(() => res.sendStatus(500))
 })
 
-router.put('/:id/tutorial', (req, res) => {
-  const id = req.params.id
-  const tutorial = req.body.tutorial
-  const skill_id = req.body.skill_id
 
-  const url = "https://www.youtube.com/embed/" + getId(tutorial)
+//webtoken
+router.put('/:id/tutorial',
+  verifyJwt({
+    getToken: verifyCB.getTokenFromCookie,
+    secret: getSecret
+  }),
+  (req, res) => {
+    const id = req.params.id
+    const tutorial = req.body.tutorial
+    const skill_id = req.body.skill_id
 
-  db.addTutorialVideo(skill_id, url)
-  .then((data) => {
-    if(data) {
-      db.uploadTutorial(id, skill_id, url)
-          .then(() => {
-            db.getUserDetails(id)
-              .then((data) => {
-                res.json({data: data}).status(201)
-              })
-              .catch(() => res.sendStatus(500))
+    const url = "https://www.youtube.com/embed/" + getId(tutorial)
+
+    db.addTutorialVideo(skill_id, url)
+    .then((data) => {
+      if(data) {
+        db.uploadTutorial(id, skill_id, url)
+            .then(() => {
+              db.getUserDetails(id)
+                .then((data) => {
+                  res.json({data: data}).status(201)
+                })
+                .catch(() => res.sendStatus(500))
+            })
+            .catch(() => res.sendStatus(500))
+      } else {
+        db.getUserDetails(id)
+          .then((data) => {
+            data.message = "This video has already been uploaded!"
+            res.json({data: data}).status(201)
           })
           .catch(() => res.sendStatus(500))
-    } else {
-      db.getUserDetails(id)
-        .then((data) => {
-          data.message = "This video has already been uploaded!"
-          res.json({data: data}).status(201)
-        })
-        .catch(() => res.sendStatus(500))
-    }
-  })
-  .catch(() => res.sendStatus(500))
+      }
+    })
+    .catch(() => res.sendStatus(500))
 })
 
-router.put("/:id/status", (req, res) => {
+
+//webtoken
+router.put("/:id/status",
+      verifyJwt({
+        getToken: verifyCB.getTokenFromCookie,
+        secret: getSecret
+      }),  (req, res) => {
   const status = req.body.status
   const skill_id = req.body.skill_id
   const user_id = req.params.id
@@ -76,6 +112,7 @@ router.put("/:id/status", (req, res) => {
     })
 })
 
+
 router.get('/:id/random', (req, res) => {
   const id = req.params.id
   db.random(id)
@@ -102,7 +139,11 @@ router.get('/:video_id/comments', (req, res) => {
 })
 
 
-router.post('/:id/comments', (req, res) => {
+router.post('/:id/comments',
+    verifyJwt({
+        getToken: verifyCB.getTokenFromCookie,
+        secret: getSecret
+      }),  (req, res) => {
   const user_id = req.params.id
   const video_id = req.body.video_id
   const comment = req.body.comment
@@ -128,16 +169,23 @@ function getId (url) {
     }
 }
 
-router.delete('/:id/videos/:video_id', (req, res) => {
-  const id = req.params.id
-  const video_id = req.params.video_id
 
-  db.deleteVideo (video_id)
-    .then((data) => {
-      db.getUserDetails(id)
-      .then((result) => {
-        res.json({data: result})
+//webtoken
+router.delete('/:id/videos/:video_id',
+    verifyJwt({
+      getToken: verifyCB.getTokenFromCookie,
+      secret: getSecret
+    }),
+    (req, res) => {
+    const id = req.params.id
+    const video_id = req.params.video_id
+
+    db.deleteVideo (video_id)
+      .then((data) => {
+        db.getUserDetails(id)
+        .then((result) => {
+          res.json({data: result})
+        })
       })
-    })
-    .catch(() => res.sendStatus(500))
-})
+      .catch(() => res.sendStatus(500))
+  })

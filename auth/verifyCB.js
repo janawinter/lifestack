@@ -56,8 +56,6 @@ function issueJwt (req, res, next) {
     const token = createToken(user, req.app.get('JWT_SECRET'))
     // Ideally use `secure: true` in production
     res.cookie('token', token, { httpOnly: true })
-    // res.redirect('/')
-    console.log(token)
     res.redirect('http://localhost:5000' + '/#/profile/' + user[0].id)
   })(req, res, next)
 }

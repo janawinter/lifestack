@@ -1,12 +1,12 @@
 const jwt = require('jsonwebtoken')
 const passport = require('passport')
 const db = require('../lib/database')
-const url = process.env.NODE_ENV || 'http://localhost:3000'
+const url = process.env.URL || 'http://localhost:3000'
 
 
 const twitterConfig = {
-  consumerKey: 'D5X2oGz0DTpwy9aFQA4aGpCpj',
-  consumerSecret: 'B9PXuiPOHOfLMm6bkLEtX8uGVyuCnV8nAv7EKqaeRoJ7Ll56WO',
+  consumerKey: process.env.CONSUMER_KEY,
+  consumerSecret: process.env.CONSUMER_SECRET,
   callbackURL: `${url}/login/twitter/callback`
 }
 

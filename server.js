@@ -10,7 +10,6 @@ const db = require('./lib/database')
 
 var passport = require('passport')
 var TwitterStrategy = require('passport-twitter').Strategy
-var configAuth = require('./auth/twitterConfig')
 var verifyCB = require('./auth/verifyCB')
 
 
@@ -22,7 +21,7 @@ const users = require('./routes/v1/users')
 app.use(express.static('public'))
 app.use(bodyParser.json())
 app.use(cors({
-  origin: ['http://localhost:5000', 'http://adulting.herokuapp.com'],
+  origin: ['http://localhost:5000', 'http://adulting.herokuapp.com', 'http://www.hashtagadulting.co.nz', 'https://adulting-server.herokuapp.com/'],
   credentials: true
 }))
 app.use(cookieParser())

@@ -22,7 +22,7 @@ const users = require('./routes/v1/users')
 app.use(express.static('public'))
 app.use(bodyParser.json())
 app.use(cors({
-  origin: ['http://localhost:5000', 'http://adulting.herokuapp.com', 'http://www.hashtagadulting.co.nz', 'https://adulting-server.herokuapp.com/'],
+  origin: ['http://localhost:5000', 'https://adulting.herokuapp.com', 'https://www.hashtagadulting.co.nz', 'https://adulting-server.herokuapp.com/'],
   credentials: true
 }))
 app.use(cookieParser())

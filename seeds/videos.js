@@ -4,6 +4,7 @@ exports.seed = function(knex, Promise) {
   return knex('videos').del()
     .then(function () {
       return Promise.all([
+<<<<<<< HEAD
         knex('videos').insert({id: 206, skill_id: 104 , url: 'https://www.youtube.com/embed/s9r-CxnCXkg', votes: 50, type: "tutorial"}),
         knex('videos').insert({id: 207, skill_id: 105 , url: 'https://www.youtube.com/embed/J5_HmfZyhKo', votes: 75, type: "tutorial"}),
         knex('videos').insert({id: 208, skill_id: 106 , url: 'https://www.youtube.com/embed/pAWduxoCgVk', votes: 303, type: "tutorial"}),
@@ -41,6 +42,7 @@ exports.seed = function(knex, Promise) {
         knex('videos').insert({id: 2035, skill_id: 1033, url: 'https://www.youtube.com/embed/CgEu5EAvZYY', votes: 22, type: "tutorial"}),
         knex('videos').insert({id: 2036, skill_id: 1034, url: 'https://www.youtube.com/embed/Rs8P0Eh7Zbc', votes: 05, type: "tutorial"}),
         knex('videos').insert({id: 2037, skill_id: 1035, url: 'https://www.youtube.com/embed/pN709oX9Bzk', votes: 29, type: "tutorial"})
+
       ])
     })
 }

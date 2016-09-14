@@ -36,13 +36,7 @@ module.exports = {
 
   production: {
     client: 'postgresql',
-    connection: {
-      host: 'ec2-184-73-202-229.compute-1.amazonaws.com',
-      port: '5432',
-      database: 'dat16vcqpa25mp',
-      user:     'eugprbskmqtovo',
-      password: process.env.DBPWD
-    },
+    connection: process.env.DATABASE_URL,
     migrations: {
       tableName: 'knex_migrations'
     }

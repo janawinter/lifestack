@@ -41,26 +41,36 @@ router.get('/:id', (req, res) => {
     .catch(() => res.sendStatus(500))
 })
 
-router.put('/:id/upvote/:video_id', (req, res) => {
-  const id = req.params.id
-  const video_id = req.params.video_id
-  const user_id = req.body.user_id
+router.put('/:id/upvote/:video_id',
+  verifyJwt({
+    getToken: verifyCB.getTokenFromCookie,
+    secret: getSecret
+  }),
+  (req, res) => {
+    const id = req.params.id
+    const video_id = req.params.video_id
+    const user_id = req.body.user_id
 
-  db.upVote (id, video_id, user_id)
-    .then((data) => {
-      res.json({data: data})
-    })
-    .catch(() => res.sendStatus(500))
+    db.upVote (id, video_id, user_id)
+      .then((data) => {
+        res.json({data: data})
+      })
+      .catch(() => res.sendStatus(500))
 })
 
-router.put('/:id/downvote/:video_id', (req, res) => {
-  const id = req.params.id
-  const video_id = req.params.video_id
-  const user_id = req.body.user_id
+router.put('/:id/downvote/:video_id',
+  verifyJwt({
+    getToken: verifyCB.getTokenFromCookie,
+    secret: getSecret
+  }),
+  (req, res) => {
+    const id = req.params.id
+    const video_id = req.params.video_id
+    const user_id = req.body.user_id
 
-  db.downVote (id, video_id, user_id)
-    .then((data) => {
-      res.json({data: data})
-    })
-    .catch(() => res.sendStatus(500))
+    db.downVote (id, video_id, user_id)
+      .then((data) => {
+        res.json({data: data})
+      })
+      .catch(() => res.sendStatus(500))
 })

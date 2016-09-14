@@ -12,7 +12,7 @@ router.get("/:id", (req, res) => {
   .then((data) => {
       res.json({data: data})
     })
-    .catch(() => res.sendStatus(500))
+    .catch(() => res.status(500).json({error: "Sorry, this user does not exist"}))
 })
 
 router.put('/:id/tutorial', (req, res) => {
@@ -31,19 +31,19 @@ router.put('/:id/tutorial', (req, res) => {
               .then((data) => {
                 res.json({data: data}).status(201)
               })
-              .catch(() => res.sendStatus(500))
+              .catch(() => res.status(500).json({error: "Sorry, something went wrong!"}))
           })
-          .catch(() => res.sendStatus(500))
+          .catch(() => res.status(500).json({error: "Sorry, something went wrong!"}))
     } else {
       db.getUserDetails(id)
         .then((data) => {
           data.message = "This video has already been uploaded!"
-          res.json({data: data}).status(201)
+          res.status(500).json({error: data.message})
         })
-        .catch(() => res.sendStatus(500))
+        .catch(() => res.status(500).json({error: "Sorry, something went wrong!"}))
     }
   })
-  .catch(() => res.sendStatus(500))
+  .catch(() => res.status(500).json({error: "Sorry, something went wrong!"}))
 })
 
 router.put("/:id/status", (req, res) => {
@@ -60,8 +60,7 @@ router.put("/:id/status", (req, res) => {
             res.json({data: data[0]}).status(202)
           })
           .catch((err) => {
-            console.log("Error updating user in DB")
-            res.sendStatus(500)
+            res.status(500).json({error: "Sorry, something went wrong!"})
           })
       } else {
         db.addSkillToUser (user_id, skill_id, status)
@@ -69,8 +68,7 @@ router.put("/:id/status", (req, res) => {
             res.json({data: data[0]}).status(201)
           })
           .catch((err) => {
-            console.log("Error adding user in DB")
-            res.sendStatus(500)
+            res.status(500).json({error: "Sorry, something went wrong!"})
           })
         }
     })
@@ -83,8 +81,7 @@ router.get('/:id/random', (req, res) => {
       res.json({data: data})
     })
     .catch((err) => {
-      console.log(err)
-      res.sendStatus(500)
+      res.status(500).json({error: "Sorry, something went wrong!"})
     })
 })
 
@@ -97,7 +94,7 @@ router.get('/:video_id/comments', (req, res) => {
     })
     .catch((err) => {
       console.log(err)
-      res.sendStatus(500)
+      res.status(500).json({error: "Sorry, something went wrong!"})
     })
 })
 
@@ -113,7 +110,7 @@ router.post('/:id/comments', (req, res) => {
     })
     .catch((err) => {
       console.log(err)
-      res.sendStatus(500)
+      res.status(500).json({error: "Sorry, something went wrong!"})
     })
 })
 
@@ -139,5 +136,5 @@ router.delete('/:id/videos/:video_id', (req, res) => {
         res.json({data: result})
       })
     })
-    .catch(() => res.sendStatus(500))
+    .catch(() => res.status(500).json({error: "Sorry, something went wrong!"}))
 })

@@ -1,7 +1,21 @@
 const express = require('express')
 const router = express.Router()
+const expressSession = require('express-session')
+const passport = require('passport')
+const verifyJwt = require('express-jwt')
+const verifyCB = require('../../auth/verifyCB')
 
 const db = require('../../lib/database')
+
+const session = expressSession({
+  resave: false,
+  secret: process.env.SESSIONS,
+  saveUninitialized: false
+})
+
+function getSecret (req, payload, done) {
+  done(null, req.app.get('JWT_SECRET'))
+}
 
 module.exports = router
 

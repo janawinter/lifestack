@@ -19,15 +19,6 @@ function getSecret (req, payload, done) {
   done(null, req.app.get('JWT_SECRET'))
 }
 
-router.get('/info',
-  verifyJwt({
-    getToken: verifyCB.getTokenFromCookie,
-    secret: getSecret
-  }),
-  (req, res) => {
-    console.log(req.cookies)
-  }
-)
 
 router.get("/:id", (req, res) => {
   let id = req.params.id

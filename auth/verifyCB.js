@@ -2,12 +2,13 @@ const jwt = require('jsonwebtoken')
 const passport = require('passport')
 const db = require('../lib/database')
 const url = process.env.URL || 'http://localhost:3000'
+const client_url = process.env.CLIENT || 'http://localhost:5000'
 
 
 const twitterConfig = {
   consumerKey: process.env.CONSUMER_KEY,
   consumerSecret: process.env.CONSUMER_SECRET,
-  callbackURL: `${url}/login/twitter/callback`
+  callbackURL: '/login/twitter/callback'
 }
 
 function createToken (user, secret) {
@@ -56,7 +57,7 @@ function issueJwt (req, res, next) {
     const token = createToken(user, req.app.get('JWT_SECRET'))
     // Ideally use `secure: true` in production
     res.cookie('token', token, { httpOnly: true })
-    res.redirect('http://localhost:5000' + '/#/profile/' + user[0].id)
+    res.redirect(`${client_url}/#/profile/${user[0].id}`)
   })(req, res, next)
 }
 

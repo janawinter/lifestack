@@ -1,7 +1,15 @@
 [![Stories in Ready](https://badge.waffle.io/nikau-2016/lifestack.png?label=ready&title=Ready)](https://waffle.io/nikau-2016/lifestack)
 # Lifestack
 
-Final project - Nikau 2016
+Final project - Nikau 2016, built by:
+  Amandine,
+  Erwin,
+  Jana,
+  Justin,
+  Kamon,
+  Prem,
+  Sachin and
+  Siobhan
 
 # *Git Process* (Nikau-2016-Final-Project)
 

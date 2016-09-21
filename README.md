@@ -2,13 +2,13 @@
 # Lifestack
 
 Final project - Nikau 2016, built by:
-  Amandine
-  Erwin
-  Jana
-  Justin
-  Kamon
-  Prem
-  Sachin
+  Amandine,
+  Erwin,
+  Jana,
+  Justin,
+  Kamon,
+  Prem,
+  Sachin,
   Siobhan
 
 # *Git Process* (Nikau-2016-Final-Project)
